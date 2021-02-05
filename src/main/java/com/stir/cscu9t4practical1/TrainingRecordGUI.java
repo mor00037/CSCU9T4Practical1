@@ -26,7 +26,9 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
     private JLabel labs = new JLabel(" Secs:");
     private JLabel labdist = new JLabel(" Distance (km):");
     private JButton addR = new JButton("Add");
+    private JButton remove = new JButton("Remove");
     private JButton lookUpByDate = new JButton("Look Up");
+    private JButton FindAllByDate = new JButton("Find All"); // Part 1, adding new button
 
     private TrainingRecord myAthletes = new TrainingRecord();
 
@@ -88,6 +90,18 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
         if (event.getSource() == lookUpByDate) {
             message = lookupEntry();
         }
+        if (event.getSource() == FindAllByDate) {
+            // message = "Not Implemented Yet"; // Here concludes the first part
+            message =lookupEntryForGivenDay(); // calling the function
+
+        }
+        if (event.getSource() == remove) {
+            
+            message =removeE(); 
+
+
+        }
+
         outputArea.setText(message);
         blankDisplay();
     } // actionPerformed
@@ -107,6 +121,15 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
         myAthletes.addEntry(e);
         return message;
     }
+    public String removeE() {
+        String message = "Record Deleted\n";
+        String nm = name.getText(); // name
+        int m = Integer.parseInt(month.getText()); // month 
+        int d = Integer.parseInt(day.getText()); // date
+        int y = Integer.parseInt(year.getText()); // year
+        myAthletes.removeEntry(nm,d, m, y);
+        return message;
+    }
     
     public String lookupEntry() {
         int m = Integer.parseInt(month.getText());
@@ -114,6 +137,15 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
         int y = Integer.parseInt(year.getText());
         outputArea.setText("looking up record ...");
         String message = myAthletes.lookupEntry(d, m, y);
+        return message;
+    }
+    // implementing the new findallbydate function
+    public String FindAllByDate() {
+        int m = Integer.parseInt(month.getText());
+        int d = Integer.parseInt(day.getText());
+        int y = Integer.parseInt(year.getText());
+        outputArea.setText("looking up record ...");
+        String message = myAthletes.lookupEntryForGivenDay(d, m, y);
         return message;
     }
 
