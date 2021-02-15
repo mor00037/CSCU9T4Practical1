@@ -1,8 +1,4 @@
 // An implementation of a Training Record as an ArrayList
-package com.stir.cscu9t4practical1;
-
-
-
 
 import java.util.*;
 
@@ -36,7 +32,8 @@ public class TrainingRecord {
           Entry current = iter.next();
           if (current.getDay()==d && current.getMonth()==m && current.getYear()==y) 
              result = current.getEntry();
-            }
+          
+       }
        return result;
    } // lookupEntry
 
@@ -61,5 +58,16 @@ public class TrainingRecord {
    public void clearAllEntries(){
        tr.clear();
    }
+   public boolean recordExists() {
+	   if (getNumberOfEntries()>0) {
+		   return true;
+	   }else {
+		   return false;
+	   }
+   }
+   public List<Entry> getList() {
+	   return tr;
+   }
+   
    
 } // TrainingRecord
